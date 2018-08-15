@@ -38,3 +38,9 @@ $ nvim
 ## usage
 
 not especially
+
+## Great thanks
+
+[pudquick/input_sources.py](https://gist.github.com/pudquick/cff1ecdc02b4cabe5aa0dc6919d97c6d)
+
+[How can we reading / coerce CFArray and CFString etc values from within OS X JXA?](https://stackoverflow.com/a/35007079)
