@@ -13,7 +13,7 @@ keycode  104     ->   102
 
 ## require
 
-macOSX
+macOSX  
 Neovim  
 pyobjc-core  
 pyobjc-framework-Cocoa  
