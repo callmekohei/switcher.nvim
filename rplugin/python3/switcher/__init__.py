@@ -26,8 +26,7 @@ class Switcher(object):
         self.vim = vim
 
         # import Carbon by now
-        carbon_path = ctypes.util.find_library('Carbon')
-        carbon = ctypes.cdll.LoadLibrary(carbon_path)
+        ctypes.cdll.LoadLibrary(ctypes.util.find_library('Carbon'))
 
         # use HITToolbox's functions
         HIToolbox_bundle = NSBundle.bundleWithIdentifier_("com.apple.HIToolbox")
