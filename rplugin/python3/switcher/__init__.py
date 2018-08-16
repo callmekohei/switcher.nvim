@@ -4,12 +4,10 @@
 #  License : MIT license
 # ===========================================================================
 
-from Foundation import NSBundle
 import CoreFoundation
 import ctypes
 import ctypes.util
 import neovim
-import objc
 
 
 @neovim.plugin
