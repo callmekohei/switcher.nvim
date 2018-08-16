@@ -13,7 +13,6 @@ Input Source  any     ->  en
 ## require
 
 macOSX  
-neovim
 pyobjc-core  
 pyobjc-framework-Cocoa  
 
