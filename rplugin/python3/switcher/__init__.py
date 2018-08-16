@@ -4,54 +4,46 @@
 #  License : MIT license
 # ===========================================================================
 
-   # ----------------------------------------------------
-   # Great thanks:
-   #     Github: https://gist.github.com/pudquick/cff1ecdc02b4cabe5aa0dc6919d97c6d
-   #     pudquick/input_sources.py
-   #
-   #     stackoverflow: https://stackoverflow.com/a/35007079
-   #     How can we reading / coerce CFArray and CFString etc values from within OS X JXA?
-   # ----------------------------------------------------
-
 from Foundation import NSBundle
+import CoreFoundation
 import ctypes
 import ctypes.util
 import neovim
 import objc
-import os
+
 
 @neovim.plugin
 class Switcher(object):
     def __init__(self, vim):
         self.vim = vim
 
-        # import Carbon by now
-        ctypes.cdll.LoadLibrary(ctypes.util.find_library('Carbon'))
+        # add carbon lib
+        self.carbon = ctypes.cdll.LoadLibrary(ctypes.util.find_library('Carbon'))
 
-        # use HITToolbox's functions
-        HIToolbox_bundle = NSBundle.bundleWithIdentifier_("com.apple.HIToolbox")
-
-        # bundle many...
-        HIToolbox_functions = [ ('TISGetInputSourceProperty', b'@@@'), ('TISCopyCurrentKeyboardInputSource', b'@') ]
-        objc.loadBundleFunctions(HIToolbox_bundle, globals(), HIToolbox_functions)
-
-        HIToolbox_constants = [('kTISPropertyInputModeID', b'@') ]
-        objc.loadBundleVariables(HIToolbox_bundle, globals(), HIToolbox_constants)
+        # re-define arg and return types
+        self.carbon.TISSelectInputSource.restype           = ctypes.c_void_p
+        self.carbon.TISSelectInputSource.argtypes          = [ctypes.c_void_p]
+        self.carbon.TISCopyInputSourceForLanguage.argtypes = [ctypes.c_void_p]
+        self.carbon.TISCopyInputSourceForLanguage.restype  = ctypes.c_void_p
 
 
     @neovim.autocmd('InsertLeave', pattern='*', eval='expand("<afile>")', sync=False)
-    def autocmd_handler(self, filename):
+    def autocmd_handler_switchEnglish(self, filename):
 
-        if TISGetInputSourceProperty(TISCopyCurrentKeyboardInputSource() , kTISPropertyInputModeID) == None :
+        lang = u'en'
 
-            pass
+        self.carbon.TISSelectInputSource(
+            self.carbon.TISCopyInputSourceForLanguage(
+                CoreFoundation.CFSTR(lang).__c_void_p__())
+        )
 
-        else:
+    @neovim.function("SwitchEnglish", sync=False)
+    def switchEnglish(self, args):
 
-            # TODO: do by objctive-c with python
+        lang = u'en'
 
-            cmd = """
-            osascript -e 'tell application "System Events" to key code 102' &
-            """
+        self.carbon.TISSelectInputSource(
+            self.carbon.TISCopyInputSourceForLanguage(
+                CoreFoundation.CFSTR(lang).__c_void_p__())
+        )
 
-            os.system(cmd)
