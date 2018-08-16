@@ -27,16 +27,6 @@ class Switcher(object):
         self.carbon.TISCopyInputSourceForLanguage.restype  = ctypes.c_void_p
 
 
-    @neovim.autocmd('InsertLeave', pattern='*', eval='expand("<afile>")', sync=False)
-    def autocmd_handler_switchEnglish(self, filename):
-
-        lang = u'en'
-
-        self.carbon.TISSelectInputSource(
-            self.carbon.TISCopyInputSourceForLanguage(
-                CoreFoundation.CFSTR(lang).__c_void_p__())
-        )
-
     @neovim.function("SwitchEnglish", sync=False)
     def switchEnglish(self, args):
 

@@ -37,12 +37,7 @@ $ nvim
 
 ## usage
 
-Neovim
-```
-not especially
-```
-
-MacVim
+Neovim / MacVim
 ```
 autocmd InsertLeave * :call SwitchEnglish('')
 ```
