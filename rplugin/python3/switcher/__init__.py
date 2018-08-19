@@ -5,7 +5,7 @@
 # ===========================================================================
 
 import neovim
-from AppKit import NSObject, NSTextInputContext , NSTextView
+from AppKit import NSTextInputContext , NSTextView
 
 @neovim.plugin
 class Switcher(object):
