@@ -13,3 +13,7 @@ let s:switcher = yarp#py3('switcher_wrap')
 function! SwitchEnglish(v)
   return s:switcher.call('switchEnglish',a:v)
 endfunction
+
+function! IsUS(v)
+  return s:switcher.call('isUS',a:v)
+endfunction

@@ -11,3 +11,6 @@ _obj = _Switcher(vim)
 
 def switchEnglish(*args):
     return _obj.switchEnglish(args)
+
+def isUS(*args):
+    return _obj.isUS(args)
