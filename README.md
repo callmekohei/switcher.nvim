@@ -45,11 +45,3 @@ Vim ( It's not recommend! Very Very Slow! )
 ```
 autocmd InsertLeave * :call SwitchEnglish('')
 ```
-
-## Great thanks
-
-[pudquick/input_sources.py](https://gist.github.com/pudquick/cff1ecdc02b4cabe5aa0dc6919d97c6d)
-
-[Khande/auto_switch_kb.py](https://gist.github.com/Khande/76f24ba90607fb5d54185bd8e4520de6)
-
-[How can we reading / coerce CFArray and CFString etc values from within OS X JXA?](https://stackoverflow.com/a/35007079)
