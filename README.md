@@ -27,7 +27,7 @@ $ pip3 install pyobjc-framework-Cocoa
 $ git clone --depth 1 https://github.com/callmekohei/switcher.nvim
 
 $ nvim .vimrc
-  set runtimepath+=/path/to/switcher.nvim
+    set runtimepath+=/path/to/switcher.nvim
 
 $ nvim
     :UpdateRemotePlugins
