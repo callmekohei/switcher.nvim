@@ -15,4 +15,5 @@ class Switcher(object):
 
     @neovim.function("SwitchEnglish", sync=False)
     def switchEnglish(self, args):
-        self.text_input_context.setValue_forKey_('com.apple.keylayout.US', 'selectedKeyboardInputSource')
+        KeyboardInputSource = self.vim.eval('g:switcher_keyboardInputSource')
+        self.text_input_context.setValue_forKey_( KeyboardInputSource , 'selectedKeyboardInputSource')
